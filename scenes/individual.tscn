@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cd65c8lffhsyn"]
+
+[ext_resource type="Script" uid="uid://btqdgl3s3t085" path="res://scripts/Individual.cs" id="1_n2558"]
+
+[node name="individual" type="Control" unique_id=970692235 node_paths=PackedStringArray("nameLabel")]
+custom_minimum_size = Vector2(10000, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 10000.0
+offset_bottom = 49.0
+script = ExtResource("1_n2558")
+nameLabel = NodePath("name")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1390929390]
+custom_minimum_size = Vector2(48, 48)
+custom_maximum_size = Vector2(48, 48)
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 49.0
+color = Color(0.015686275, 0.6666667, 1, 1)
+
+[node name="name" type="Label" parent="." unique_id=457594439]
+layout_mode = 0
+offset_left = 52.0
+offset_right = 96.0
+offset_bottom = 49.0
+text = "name
+"
+vertical_alignment = 1

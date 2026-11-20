@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://l45pytq6b5xw"]
+
+[ext_resource type="Texture2D" uid="uid://dh8x8dbr5q7h5" path="res://icon.svg" id="1_f7wec"]
+[ext_resource type="Script" uid="uid://b0bjnlif0xhxr" path="res://scripts/LocationManager.cs" id="1_syfho"]
+[ext_resource type="PackedScene" uid="uid://cfjfngvb8dgb3" path="res://scenes/location.tscn" id="2_f7wec"]
+[ext_resource type="Script" uid="uid://c4akebmgh2365" path="res://scripts/PeopleManager.cs" id="4_4x7gm"]
+
+[node name="Root" type="Sprite2D" unique_id=442093238 node_paths=PackedStringArray("Locations", "gridContainer")]
+texture = ExtResource("1_f7wec")
+script = ExtResource("1_syfho")
+Locations = []
+gridContainer = NodePath("GridContainer")
+locationObject = ExtResource("2_f7wec")
+
+[node name="sideUI" type="Control" parent="." unique_id=125667393]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 925.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="ColorRect" type="ColorRect" parent="sideUI" unique_id=932376314]
+layout_mode = 0
+offset_right = 227.0
+offset_bottom = 648.0
+color = Color(0.16391653, 0.17455882, 0.17667556, 1)
+
+[node name="Container" type="Container" parent="sideUI/ColorRect" unique_id=2128924770]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.85200006
+offset_bottom = -0.0960083
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AddLocationButton" type="Button" parent="sideUI/ColorRect" unique_id=1788311036]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 568.0
+offset_right = 203.0
+offset_bottom = 624.0
+text = "add location"
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=870316023]
+offset_left = 64.0
+offset_right = 925.0
+offset_bottom = 648.0
+columns = 2
+
+[node name="PeopleManager" type="Node2D" parent="." unique_id=555356659]
+script = ExtResource("4_4x7gm")
+
+[connection signal="pressed" from="sideUI/ColorRect/AddLocationButton" to="." method="_on_add_location_pressed"]

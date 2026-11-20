@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cfjfngvb8dgb3"]
+
+[ext_resource type="PackedScene" uid="uid://cd65c8lffhsyn" path="res://scenes/individual.tscn" id="1_gjgjs"]
+[ext_resource type="Script" uid="uid://dpp4olupflmpa" path="res://scripts/Location.cs" id="1_j6npq"]
+
+[node name="location" type="Control" unique_id=1223170069 node_paths=PackedStringArray("PeopleHere", "nameLabel", "gridContainer", "nameInpt")]
+custom_minimum_size = Vector2(384, 256)
+custom_maximum_size = Vector2(384, 256)
+layout_mode = 3
+anchor_right = 0.333
+anchor_bottom = 0.395
+offset_right = 0.3840027
+offset_bottom = 0.039993286
+script = ExtResource("1_j6npq")
+PeopleHere = []
+nameLabel = NodePath("GridContainer/Label")
+gridContainer = NodePath("GridContainer")
+nameInpt = NodePath("LineEdit")
+individualObject = ExtResource("1_gjgjs")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1834244346]
+custom_maximum_size = Vector2(300, 300)
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="GridContainer" unique_id=1925471562]
+layout_mode = 2
+text = "Location #"
+
+[node name="addPersonButton" type="Button" parent="." unique_id=469088998]
+layout_mode = 0
+offset_left = 96.0
+offset_right = 104.0
+offset_bottom = 8.0
+text = "add person"
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1587049718]
+layout_mode = 0
+offset_left = 200.0
+offset_right = 304.0
+offset_bottom = 31.0
+placeholder_text = "name here"
+emoji_menu_enabled = false
+
+[node name="Button" type="Button" parent="." unique_id=563473126]
+layout_mode = 0
+offset_left = 312.0
+offset_right = 376.0
+offset_bottom = 31.0
+text = "view"
+
+[connection signal="pressed" from="addPersonButton" to="." method="_on_button_pressed"]
