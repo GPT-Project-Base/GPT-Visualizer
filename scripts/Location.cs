@@ -15,9 +15,11 @@ public partial class Location : Control
 	[Export] public int Frame;
 	
 	//assets
-	[Export] public Label nameLabel;
-	[Export] public GridContainer gridContainer;
-	[Export] public LineEdit nameInpt;
+	[Export] private Label nameLabel;
+	[Export] private GridContainer gridContainer;
+	[Export] private LineEdit nameInpt;
+	[Export] private ColorRect selectedIndicatorF;
+	[Export] private ColorRect selectedIndicatorT;
 	
 	[Export] public PackedScene individualObject;
 
@@ -84,17 +86,22 @@ public partial class Location : Control
 		if(@event.IsActionPressed("Enter")){
 			_on_button_pressed();
 		}
-
 	}
 
 	private void _on_button_pressed()
 	{
 		if(!string.IsNullOrEmpty(nameInpt.Text))
-		{//only add individual if nameInpt has text
+		{//only add individual if nameInpt has text then clear the text
 			AddIndividual(nameInpt.Text);
+			nameInpt.Text = "";
 		}
 		
 	}
 
-
+	public void isSelected(bool selected){
+		selectedIndicatorF.Visible = !selected;
+		selectedIndicatorT.Visible = selected;
+	}
+	
+	
 }

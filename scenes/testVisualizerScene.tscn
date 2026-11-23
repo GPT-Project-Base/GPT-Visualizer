@@ -5,12 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://cfjfngvb8dgb3" path="res://scenes/location.tscn" id="2_f7wec"]
 [ext_resource type="Script" uid="uid://c4akebmgh2365" path="res://scripts/PeopleManager.cs" id="4_4x7gm"]
 
-[node name="Root" type="Sprite2D" unique_id=442093238 node_paths=PackedStringArray("Locations", "gridContainer")]
+[node name="Root" type="Sprite2D" unique_id=442093238 node_paths=PackedStringArray("Locations", "gridContainer", "selectedLocationLabel")]
 texture = ExtResource("1_f7wec")
 script = ExtResource("1_syfho")
 Locations = []
 gridContainer = NodePath("GridContainer")
 locationObject = ExtResource("2_f7wec")
+selectedLocationLabel = NodePath("sideUI/background/Container/LocationSelectUi/Container/selectedLocationLabel")
 
 [node name="sideUI" type="Control" parent="." unique_id=125667393]
 layout_mode = 3
@@ -19,13 +20,13 @@ offset_left = 925.0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="ColorRect" type="ColorRect" parent="sideUI" unique_id=932376314]
+[node name="background" type="ColorRect" parent="sideUI" unique_id=932376314]
 layout_mode = 0
 offset_right = 227.0
 offset_bottom = 648.0
 color = Color(0.16391653, 0.17455882, 0.17667556, 1)
 
-[node name="Container" type="Container" parent="sideUI/ColorRect" unique_id=2128924770]
+[node name="Container" type="VBoxContainer" parent="sideUI/background" unique_id=2115946810]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -34,7 +35,92 @@ offset_bottom = -0.0960083
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AddLocationButton" type="Button" parent="sideUI/ColorRect" unique_id=1788311036]
+[node name="Title" type="Label" parent="sideUI/background/Container" unique_id=399057764]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+text = "Stats"
+horizontal_alignment = 1
+
+[node name="Title2" type="Label" parent="sideUI/background/Container" unique_id=1474581556]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+text = "Selected Location"
+horizontal_alignment = 1
+
+[node name="LocationSelectUi" type="HBoxContainer" parent="sideUI/background/Container" unique_id=1486806186]
+layout_mode = 2
+alignment = 1
+
+[node name="leftButton" type="Button" parent="sideUI/background/Container/LocationSelectUi" unique_id=839667997]
+layout_mode = 2
+text = "  <  "
+
+[node name="Container" type="Container" parent="sideUI/background/Container/LocationSelectUi" unique_id=714844604]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="selectedLocationLabel" type="Label" parent="sideUI/background/Container/LocationSelectUi/Container" unique_id=1837853536]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+text = "None"
+horizontal_alignment = 1
+
+[node name="rightButton" type="Button" parent="sideUI/background/Container/LocationSelectUi" unique_id=530946788]
+layout_mode = 2
+text = "  >  "
+
+[node name="Title3" type="Label" parent="sideUI/background/Container" unique_id=821405049]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+text = "Selected Individual"
+horizontal_alignment = 1
+
+[node name="peopleSelectUi" type="HBoxContainer" parent="sideUI/background/Container" unique_id=678396097]
+layout_mode = 2
+alignment = 1
+
+[node name="leftButton" type="Button" parent="sideUI/background/Container/peopleSelectUi" unique_id=1364865826]
+layout_mode = 2
+text = "  <  "
+
+[node name="Container" type="Container" parent="sideUI/background/Container/peopleSelectUi" unique_id=1606276914]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="selectedLocationLabel" type="Label" parent="sideUI/background/Container/peopleSelectUi/Container" unique_id=1766579248]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+text = "None"
+horizontal_alignment = 1
+
+[node name="rightButton" type="Button" parent="sideUI/background/Container/peopleSelectUi" unique_id=1854554693]
+layout_mode = 2
+text = "  >  "
+
+[node name="ColorRect" type="ColorRect" parent="sideUI/background/Container" unique_id=942206761]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+color = Color(0.1022433, 0.10224318, 0.10224324, 1)
+
+[node name="LocationStats" type="VBoxContainer" parent="sideUI/background/Container/ColorRect" unique_id=1057554642]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99600005
+anchor_bottom = 1.0
+offset_right = 0.9079895
+
+[node name="Label" type="Label" parent="sideUI/background/Container/ColorRect/LocationStats" unique_id=1759709057]
+layout_mode = 2
+
+[node name="PersonStats" type="VBoxContainer" parent="sideUI/background/Container/ColorRect" unique_id=1921705550]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99600005
+anchor_bottom = 1.0
+offset_right = 0.9079895
+
+[node name="AddLocationButton" type="Button" parent="sideUI/background" unique_id=1788311036]
 layout_mode = 0
 offset_left = 27.0
 offset_top = 568.0
@@ -48,7 +134,10 @@ offset_right = 925.0
 offset_bottom = 648.0
 columns = 2
 
-[node name="PeopleManager" type="Node2D" parent="." unique_id=555356659]
+[node name="PeopleManager" type="Node2D" parent="." unique_id=555356659 node_paths=PackedStringArray("peopleHere")]
 script = ExtResource("4_4x7gm")
+peopleHere = []
 
-[connection signal="pressed" from="sideUI/ColorRect/AddLocationButton" to="." method="_on_add_location_pressed"]
+[connection signal="pressed" from="sideUI/background/Container/LocationSelectUi/leftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="sideUI/background/Container/LocationSelectUi/rightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="sideUI/background/AddLocationButton" to="." method="_on_add_location_pressed"]

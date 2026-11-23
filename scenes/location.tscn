@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cd65c8lffhsyn" path="res://scenes/individual.tscn" id="1_gjgjs"]
 [ext_resource type="Script" uid="uid://dpp4olupflmpa" path="res://scripts/Location.cs" id="1_j6npq"]
 
-[node name="location" type="Control" unique_id=1223170069 node_paths=PackedStringArray("PeopleHere", "nameLabel", "gridContainer", "nameInpt")]
+[node name="location" type="Control" unique_id=1223170069 node_paths=PackedStringArray("PeopleHere", "nameLabel", "gridContainer", "nameInpt", "selectedIndicatorF", "selectedIndicatorT")]
 custom_minimum_size = Vector2(384, 256)
 custom_maximum_size = Vector2(384, 256)
 layout_mode = 3
@@ -16,6 +16,8 @@ PeopleHere = []
 nameLabel = NodePath("GridContainer/Label")
 gridContainer = NodePath("GridContainer")
 nameInpt = NodePath("LineEdit")
+selectedIndicatorF = NodePath("FalseSelectedIndicator")
+selectedIndicatorT = NodePath("TrueSelectedIndicator")
 individualObject = ExtResource("1_gjgjs")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1834244346]
@@ -45,11 +47,19 @@ offset_bottom = 31.0
 placeholder_text = "name here"
 emoji_menu_enabled = false
 
-[node name="Button" type="Button" parent="." unique_id=563473126]
+[node name="FalseSelectedIndicator" type="ColorRect" parent="." unique_id=1461212339]
 layout_mode = 0
-offset_left = 312.0
-offset_right = 376.0
+offset_top = 23.0
+offset_right = 96.0
 offset_bottom = 31.0
-text = "view"
+color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+
+[node name="TrueSelectedIndicator" type="ColorRect" parent="." unique_id=1567265134]
+visible = false
+layout_mode = 0
+offset_top = 23.0
+offset_right = 96.0
+offset_bottom = 31.0
+color = Color(0, 0.73333335, 0.23137255, 1)
 
 [connection signal="pressed" from="addPersonButton" to="." method="_on_button_pressed"]
