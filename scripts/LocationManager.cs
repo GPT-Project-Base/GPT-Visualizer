@@ -4,15 +4,16 @@ using System.Collections.Generic;
 
 public partial class LocationManager : Node2D
 {
-	
+	//data
 	[Export] public Godot.Collections.Array<Location> Locations;
 	
-	
+	//Assets
 	[Export] public GridContainer gridContainer;
 	[Export] public PackedScene locationObject;
-	[Export] public Label selectedLocationLabel;	
+	[Export] public Label selectedLocationLabel;
 	public Location selectedLocation;
-	[Export] private int selectedLocationID = -1;
+	[Export] public int selectedLocationID = -1;
+
 
 	public override void _Input(InputEvent @event)
 	{
@@ -40,6 +41,7 @@ public partial class LocationManager : Node2D
 	private void _on_add_location_pressed()
 	{
 		//GD.Print("added locations");
+		//add a new location to the list
 		AddLocation();
 	}
 
